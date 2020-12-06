@@ -5,8 +5,10 @@ namespace CarlyLib.IO
 {
     public class BinaryWriter : IWritable<byte[]>, IDisposable
     {
-        private Stream Stream;
+        private readonly Stream Stream;
 
+        
+        public　void Dispose() => Stream?.Close();
 
         public BinaryWriter(string path)
         {
@@ -27,15 +29,6 @@ namespace CarlyLib.IO
         public async Task WriteAsync(byte[] buffer)
         {
             await Stream.WriteAsync(buffer, 0, buffer.Length);
-        }
-
-
-        public void Dispose()
-        {
-            if(Stream != null)
-            {
-                Stream.Dispose();
-            }
         }
     }
 }

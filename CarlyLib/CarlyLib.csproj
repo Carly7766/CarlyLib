@@ -40,8 +40,26 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="IO\Deserializer\IDeserializable.cs" />
+        <Compile Include="IO\Deserializer\JsonDeserializer.cs" />
+        <Compile Include="IO\Factory\ReaderFactory\JsonReaderFactory.cs" />
+        <Compile Include="IO\Factory\ReaderFactory\ReaderFactory.cs" />
+        <Compile Include="IO\Reader\BinaryReader.cs" />
+        <Compile Include="IO\Reader\DeserializeReader.cs" />
+        <Compile Include="IO\Reader\IReadable.cs" />
+        <Compile Include="IO\Reader\JsonReader.cs" />
+        <Compile Include="IO\Reader\TextReader.cs" />
+        <Compile Include="IO\Serialize\ISerializable.cs" />
+        <Compile Include="IO\Serialize\JsonSerializer.cs" />
+        <Compile Include="IO\Writer\BinaryWriter.cs" />
+        <Compile Include="IO\Writer\IWritable.cs" />
+        <Compile Include="IO\Writer\JsonWriter.cs" />
+        <Compile Include="IO\Writer\SerializeWriter.cs" />
+        <Compile Include="IO\Writer\TextWriter.cs" />
         <Compile Include="Test.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Text\IFormattable.cs" />
+        <Compile Include="Text\JsonFormatter.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

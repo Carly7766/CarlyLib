@@ -8,7 +8,9 @@ namespace CarlyLib.IO
     {
         private Stream Stream;
         private Encoding Encoding;
-
+        
+        
+        public　void Dispose() => Stream?.Close();
 
         public TextReader(string path)
         {
@@ -57,15 +59,6 @@ namespace CarlyLib.IO
             string text = Encoding.GetString(buffer);
 
             return text;
-        }
-
-
-        public void Dispose()
-        {
-            if (Stream != null)
-            {
-                Stream.Dispose();
-            }
         }
     }
 }

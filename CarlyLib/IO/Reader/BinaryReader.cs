@@ -5,13 +5,14 @@ namespace CarlyLib.IO
 {
     public class BinaryReader : IReadable<byte[]>, IDisposable
     {
-        private Stream Stream;
+        public readonly Stream Stream;
 
-
+        
+        public　void Dispose() => Stream?.Close();
+        
         public BinaryReader(string path)
         {
             Stream = File.OpenRead(path);
-            
         }
 
         public BinaryReader(Stream stream)
@@ -22,7 +23,7 @@ namespace CarlyLib.IO
 
         public byte[] Read()
         {
-            byte[] buffer = new byte[Stream.Length];
+            var buffer = new byte[Stream.Length];
             Stream.Read(buffer, 0, buffer.Length);
 
             return buffer;
@@ -30,18 +31,10 @@ namespace CarlyLib.IO
 
         public async Task<byte[]> ReadAsync()
         {
-            byte[] buffer = new byte[Stream.Length];
+            var buffer = new byte[Stream.Length];
             await Stream.ReadAsync(buffer, 0, buffer.Length);
 
             return buffer;
-        }
-
-        public　void Dispose()
-        {
-            if(Stream != null)
-            {
-                Stream.Dispose();
-            }
         }
     }
 }

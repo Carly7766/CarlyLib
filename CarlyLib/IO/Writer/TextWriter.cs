@@ -9,6 +9,8 @@ namespace CarlyLib.IO
         private Stream Stream;
         private Encoding Encoding;
         
+        public　void Dispose() => Stream?.Close();
+
 
         public TextWriter(string path)
         {
@@ -50,13 +52,6 @@ namespace CarlyLib.IO
             byte[] buffer = Encoding.GetBytes(text);
 
             await Stream.WriteAsync(buffer, 0, buffer.Length);
-        }
-
-        public void Dispose() {
-            if(Stream != null)
-            {
-                Stream.Dispose();
-            }
         }
     }
 }

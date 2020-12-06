@@ -1,0 +1,10 @@
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/bin/Debug/CarlyLib.dll
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/bin/Debug/CarlyLib.pdb
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/bin/Debug/UnityEngine.dll
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/bin/Debug/UnityEngine.pdb
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/bin/Debug/UnityEngine.xml
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/obj/Debug/CarlyLib.csprojAssemblyReference.cache
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/obj/Debug/CarlyLib.csproj.CoreCompileInputs.cache
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/obj/Debug/CarlyLib.csproj.CopyComplete
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/obj/Debug/CarlyLib.dll
+/Users/oomoriakari/Desktop/CsProjects/CarlyLib/CarlyLib/obj/Debug/CarlyLib.pdb

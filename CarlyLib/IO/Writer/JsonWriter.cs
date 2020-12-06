@@ -5,15 +5,16 @@ namespace CarlyLib.IO
 {
     public class JsonWriter : IWritable<object>, IDisposable
     {
-        public IWritable<string> writer;
-        private JsonFormatter jsonFormatter;
+        public readonly IWritable<string> Writer;
+        private readonly JsonFormatter JsonFormatter;
 
+        public void Dispose() => (Writer as IDisposable)?.Dispose();
 
         public JsonWriter(IWritable<string> writer)
         {
-            this.writer = writer;
+            this.Writer = writer;
 
-            this.jsonFormatter = new JsonFormatter();
+            this.JsonFormatter = new JsonFormatter();
         }
 
 
@@ -21,27 +22,18 @@ namespace CarlyLib.IO
         {
             string text = new JsonSerializer(target).Serialize();
 
-            string formattedText = jsonFormatter.Format(text);
+            string formattedText = JsonFormatter.Format(text);
 
-            writer.Write(formattedText);
+            Writer.Write(formattedText);
         }
 
         public async Task WriteAsync(object target)
         {
             string text = new JsonSerializer(target).Serialize();
 
-            string formattedText = jsonFormatter.Format(text);
+            string formattedText = JsonFormatter.Format(text);
 
-            await writer.WriteAsync(formattedText);
-        }
-
-
-        public void Dispose()
-        {
-            if (writer is IDisposable)
-            {
-                ((IDisposable)writer).Dispose();
-            }
+            await Writer.WriteAsync(formattedText);
         }
     }
 }

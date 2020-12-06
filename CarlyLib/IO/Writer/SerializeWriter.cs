@@ -1,27 +1,32 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 namespace CarlyLib.IO
 {
-    public class SerializeWriter : IWritable<ISerializable>
+    public class SerializeWriter : IWritable<ISerializable>, IDisposable
     {
-        public IWritable<string> writer;
+        public readonly IWritable<string> Writer;
+
+
+        public void Dispose() => (Writer as IDisposable)?.Dispose();
 
         public SerializeWriter(IWritable<string> writer)
         {
-            this.writer = writer;
+            this.Writer = writer;
         }
 
+        
         public void Write(ISerializable serializer)
         {
-            string text = serializer.Serialize();
+            var text = serializer.Serialize();
 
-            writer.Write(text);
+            Writer.Write(text);
         }
 
         public async Task WriteAsync(ISerializable serializer)
         {
             string text = serializer.Serialize();
 
-            await writer.WriteAsync(text);
+            await Writer.WriteAsync(text);
         }
     }
 }

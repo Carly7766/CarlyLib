@@ -1,27 +1,32 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 namespace CarlyLib.IO
 {
-    public class DeserializeReader<T> : IReadable<T>
+    public class DeserializeReader<T> : IReadable<T>, IDisposable
     {
-        public IReadable<string> StringReader;
-        public IDeserializable<string> Deserializer;
+        public readonly IReadable<string> Reader;
+        public readonly IDeserializable<string> Deserializer;
+
+        
+        public void Dispose() => (Reader as IDisposable)?.Dispose();
 
         public DeserializeReader(IReadable<string> stringReader, IDeserializable<string> deserializer)
         {
-            StringReader = stringReader;
+            Reader = stringReader;
             Deserializer = deserializer;
         }
 
+        
         public T Read()
         {
-            string text = StringReader.Read();
+            var text = Reader.Read();
 
             return Deserializer.Deserialize<T>(text);
         }
 
         public async Task<T> ReadAsync()
         {
-            string text = await StringReader.ReadAsync();
+            string text = await Reader.ReadAsync();
 
             return Deserializer.Deserialize<T>(text);
         }

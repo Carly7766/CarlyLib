@@ -4,18 +4,20 @@ namespace CarlyLib.IO
 {
     public class JsonReader<T> : IReadable<T>, IDisposable
     {
-        public IReadable<string> reader;
+        public readonly IReadable<string> Reader;
 
+        
+        public void Dispose() => (Reader as IDisposable)?.Dispose();
 
-        public JsonReader(IReadable<string> reader)
+        public JsonReader(IReadable<string> Reader)
         {
-            this.reader = reader;
+            this.Reader = Reader;
         }
 
-
+        
         public T Read()
         {
-            string text = reader.Read();
+            string text = Reader.Read();
 
             T readedObject = new JsonDeserializer().Deserialize<T>(text);
 
@@ -24,20 +26,11 @@ namespace CarlyLib.IO
 
         public async Task<T> ReadAsync()
         {
-            string text = await reader.ReadAsync();
+            string text = await Reader.ReadAsync();
 
             T readedObject = new JsonDeserializer().Deserialize<T>(text);
 
             return readedObject;
-        }
-
-
-        public void Dispose()
-        {
-            if (reader is IDisposable)
-            {
-                ((IDisposable)reader).Dispose();
-            }
         }
     }
 }
